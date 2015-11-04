@@ -21,6 +21,7 @@ before_filter :initialize_cart_items_to_buy, only: [:create]
     shipping_charge = @order.order_details.map{|od| od.product.shipping_charge}.sum
     net_amount = @order.order_details.sum(:price) + shipping_charge
     tax_amount = (net_amount * 5)/100
+    
     @order.update_attributes(net_amount: net_amount, shipping_charge: shipping_charge, tax_amount: tax_amount, shipping_date: Time.now.to_date+7)
     redirect_to @order
   end
