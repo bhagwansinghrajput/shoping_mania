@@ -1,0 +1,24 @@
+<h2>Users</h2>
+<table>
+  <tr>
+    <th>Sr.no.</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Address</th>
+    <th>Zipcode</th>
+  </tr>
+  <% n = 0 %>
+  <% if current_user.is_admin? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= n = n + 1 %></td>
+        <td><%= user.first_name.capitalize rescue '' %> <%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.contact_no %></td>
+        <td><%= user.address.capitalize rescue '' %></td>
+        <td><%= user.zipcode %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

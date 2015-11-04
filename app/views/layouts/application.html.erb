@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="header">
+    <div class="right" >
+      <% if user_signed_in? %>
+        <ul>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          |
+          <%= link_to('Edit profile', edit_user_registration_path, :method => :get) %>
+        </ul>
+      <% else %>
+        <ul>
+          <%= link_to('Login', new_user_session_path)  %> 
+          |
+          <%= link_to('Sign up', new_user_registration_path)  %>
+        </ul>
+      <% end %>
+    </div>
+    <a href="/home/index">
+      <img src="/assets/logo.png" alt="logo feed"  width=200px />
+    </a><br />
+  </div>
+</div><br /><br /><br /><br /><br />
+
+<body>
+<%= link_to 'Back', 'javascript:history.go(-1);' %>
+  <div style="width: 500px;">
+    <% if flash[:success]  %>
+      <div class = "alert alert-success" ><%= flash[:success] %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div class="alert alert-danger"><%= flash[:error] %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
+    <% end %>
+  </div>
+  <%= yield %>
+</body>
+

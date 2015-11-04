@@ -1,0 +1,27 @@
+
+<h2>Buyers</h2>
+<table>
+  <tr>
+    <th>Sr.no.</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Address</th>
+    <th>Zipcode</th>
+  </tr>
+     <% n = 0 %>
+  <% if current_user.is_admin? %>
+    <% @buyers.each do |buyer| %>
+      <tr>
+        <td><%= n = n + 1 %></td>
+        <td><%= buyer.first_name.capitalize %> <%= buyer.last_name %></td>
+        <td><%= buyer.email %></td>
+        <td><%= buyer.contact_no %></td>
+        <td><%= buyer.address.capitalize %></td>
+        <td><%= buyer.zipcode %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+

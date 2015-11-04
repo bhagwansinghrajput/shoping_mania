@@ -1,0 +1,18 @@
+<% if @image.present? %>
+  <% if @image.errors.any? %>
+      <div id="error_explanation">
+        
+           <h2><%= pluralize(@image.errors.count, "error") %>
+           prohibited the uploading process...</h2>
+           <p>There were problems with the following fields:</p>
+        <ul>
+          <% @image.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      &nbsp;<br />
+  <% end %>
+<% end %>
+ 

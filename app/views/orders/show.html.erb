@@ -1,0 +1,28 @@
+<h2>New order</h2>
+
+<%= button_to "My orders",  orders_path, :class => "button btn-primary btn-sm", :method => :get %><br /><br />
+
+<table class="table-hover">
+  <tr>
+    <th>shipping_charge</th>
+    <th>tax_amount</th>
+    <th>discount_promo</th>
+    <th>net_amount</th>
+    <th>shipping_date</th>
+    <th>status</th>
+  </tr>
+      <tr>
+        <td><%= @order.shipping_charge %></td>
+        <td><%= @order.tax_amount %></td>
+        <td><%= @order.discount_on_promocode %></td>
+        <td><%= @order.net_amount %></td>
+        <td><%= @order.shipping_date %></td>
+        <td><%= @order.status %></td>
+      </tr>
+</table><br />
+<table>
+  <tr>
+  <th>Total price</th>
+  <td><%= @order.net_amount + @order.tax_amount %></td>
+  </tr>
+</table>

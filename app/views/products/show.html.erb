@@ -1,0 +1,25 @@
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back to  all products', products_path  %>
+
+<p>
+  <strong>name:</strong>
+  <%= @product.name %>
+</p>
+ 
+<p>
+  <strong>quantity:</strong>
+  <%= @product.quantity %>
+</p>
+
+<p>
+  <strong>price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>image:</strong>
+  <%= image_tag @product.image_url(:thumb),, :class => "img-circle" %>
+</p>
+
+
+

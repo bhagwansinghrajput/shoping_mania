@@ -1,0 +1,27 @@
+<title>Add New Product</title>
+
+<%= nested_form_for @product, :html => {:multipart => true} do |f| %>
+    
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br />
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %><br />
+    <strong>Each product</strong> <%= f.label :price %><br />
+    <%= f.text_field :price %><br />
+    <%= f.label :shipping_charge %><br />
+    <%= f.text_field :shipping_charge %><br />
+    <%= f.file_field :image %><br />
+    Categories:
+    <ul id="Categories">
+      <%= f.fields_for :categories, :wrapper => false do |category_form| %>
+        <li class="fields">
+          <%= category_form.label :name %>
+          <%= category_form.text_field :name %>
+          <%= category_form.link_to_remove "Remove this category " %>
+        </li>
+      <% end %>
+    </ul>
+    <p><%= f.link_to_add "Add categories", :categories %></p>        
+  <%= f.submit %>
+<% end %>
+
