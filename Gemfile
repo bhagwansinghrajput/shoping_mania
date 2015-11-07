@@ -16,7 +16,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete' 
 gem 'rails_12factor', group: :production
-
+gem 'ruby', '2.1.7'
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
