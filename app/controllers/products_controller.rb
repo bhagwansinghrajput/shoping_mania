@@ -24,10 +24,16 @@ class ProductsController < ApplicationController
     if @product.save
       Product.transaction do
         category = Category.where("name ilike ?", params[:category_name]).first
-        category.blank? ? category = @product.categories.create(name: params[:category_name]) : @product.category_products.create(:category_id => category.id)
+        if params[:category_name].present?
+          category.blank? ? category = @product.categories.create!(name: params[:category_name]) : @product.category_products.create!(:category_id => category.id)
+        else
+          flash[:error] = "Please enter category."
+          render 'new' and return
+        end
       end     
       redirect_to products_path
     else
+      flash[:error] = @product.errors.full_mesages.join("<br>").html_safe
       render 'new'
     end
   end
@@ -48,7 +54,7 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to products_path
     else
-      flash[:error] = "product not available"
+      flash[:error] = "Product not available."
       redirect_to products_path
     end
   end
@@ -66,7 +72,7 @@ class ProductsController < ApplicationController
     if current_user.is_user?
       @view_orders = Order.joins(:order_details).where("order_details.product_id in (?)", current_user.products.map(&:id))
       if @view_orders.blank?
-        flash[:error] = "orders not available" 
+        flash[:error] = "Orders not available." 
         redirect_to products_path
       end
     end  
@@ -77,7 +83,7 @@ class ProductsController < ApplicationController
   end
 
   def autocomplete_category_name
-    @categories = Category.autocomplete_category_name(params[:term]).map(&:name)
+    @categories = Category.list_category_name(params[:term]).map(&:name)
     render :json => @categories
   end
   
