@@ -3,16 +3,10 @@
 <% if current_user.is_user? %>
   <%= link_to "Add more products", new_product_path , :class => "button", :method => :get %><br /><br />
 
-  <%= form_tag('/products', method: :get) do %>
-    <%= label_tag(:search, "Search name:") %>
-    <%= text_field_tag(:search) %>
-    <%= submit_tag("Search") %>
-  <% end %>
-
   <h2>Products</h2>
 
   <%= link_to "View orders", all_orders_product_path(:id), class: "button", method: :get %><br /><br />
-  <table >
+  <table class="table-hover">
     <tr>
       <th>Sr.no.</th>
       <th>Name</th>
@@ -22,30 +16,11 @@
       <th>Image</th>
     </tr>
     
-    <% n = 0 %>
-
-    <% if current_user.is_user? %>
-      <% @products.each do |product| %>
-        <tr>
-          <td><%= n = n + 1 %></td>
-          <td><%= product.name.capitalize %></td>
-          <td><%= product.quantity %></td>
-          <td><%= product.available_quantity %></td>
-          <td><%= product.price %></td>
-          <td><%= image_tag product.image_url(:thumb), :class => "img-circle" %>
-            <i><%= link_to "Edit", edit_product_path(product.id) , :class => "button", :method => :get %><br />
-              <%= link_to 'Delete product', product_path(product),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-            </i><br />
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
+    <div id="user_products">
+      <%= render :partial => "products_list" %>
+    </div>
   </table>
 <% end %>
 
 
-    
-      
     

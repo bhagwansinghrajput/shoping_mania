@@ -13,6 +13,8 @@ gem "carrierwave"
 gem "nested_form"
 gem "twitter-bootstrap-rails"
 gem 'will_paginate', '~> 3.0.6'
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete' 
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'

@@ -1,42 +1,42 @@
+<div class="left">
+  <%= render "users/shared/links" %>
+  <h2>Sign up</h2>
 
-<%= render "users/shared/links" %>
-<h2>Sign up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.radio_button :role, "1" %>User (If add product please select user)<br />
+      <%= f.radio_button :role, "2" %>Buyer (If buy items please select buyer)<br />
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %><br />
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %><br />
+      <%= f.label :contact_no %><br />
+      <%= f.text_field :contact_no %><br />
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %><br />
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %><br />
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
+      <%= f.label :address %><br />
+      <%= f.text_field :address %><br />
+      <%= f.label :city %><br />
+      <%= f.text_field :city %><br />
+      <%= f.label :state %><br />
+      <%= f.text_field :state %><br />
+      <%= f.label :country %><br />
+      <%= f.text_field :country %><br />
+      <%= f.label :zipcode %><br />
+      <%= f.text_field :zipcode %><br />
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="field">
-    <%= f.radio_button :role, "1" %>User (If add product please select user)<br />
-    <%= f.radio_button :role, "2" %>Buyer (If buy items please select buyer)<br />
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %><br />
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %><br />
-    <%= f.label :contact_no %><br />
-    <%= f.text_field :contact_no %><br />
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %><br />
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %><br />
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
-    <%= f.label :address %><br />
-    <%= f.text_field :address %><br />
-    <%= f.label :city %><br />
-    <%= f.text_field :city %><br />
-    <%= f.label :state %><br />
-    <%= f.text_field :state %><br />
-    <%= f.label :country %><br />
-    <%= f.text_field :country %><br />
-    <%= f.label :zipcode %><br />
-    <%= f.text_field :zipcode %><br />
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+  <% end %>
+</div>
 

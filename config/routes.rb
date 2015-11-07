@@ -16,12 +16,17 @@ Rails.application.routes.draw do
       get 'all_orders'
       get 'product_by_categories'
     end
+    collection do
+      get 'search'
+      get :autocomplete_category_name
+    end  
   end
   resources :categories
   resources :cart
   resources :cart_item
   resources :orders
-  
+  resources :bhagwan
+  resource :sumit
    
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

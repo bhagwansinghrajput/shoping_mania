@@ -1,7 +1,8 @@
 class CartItemController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @cart_item = current_user.cart_items
+      @cart_item = current_user.cart_items
   end
   
   def new
@@ -28,7 +29,12 @@ class CartItemController < ApplicationController
   
   def destroy
     @cart_item = current_user.cart.cart_items.where("id = ?", params[:id]).first
-    @cart_item.destroy
+    if @cart_item.present?
+      @cart_item.destroy
+    else
+      flash[:error] = "item not available"
+      redirect_to cart_item_index_path
+    end
     redirect_to cart_item_index_path
   end
    

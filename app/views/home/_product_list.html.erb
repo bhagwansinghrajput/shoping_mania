@@ -1,0 +1,39 @@
+<table class="table table-hover" >
+  <tr>
+    <th>Sr.no.</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Availeble Quantity</th>
+    <th>Quantity</th>
+    <th>Image</th>
+  </tr>
+  
+
+  <% @products.each_with_index do |product, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= product.name.capitalize %></td>
+      <td>Rs.<%= product.price %></td>
+      <td><%= product.available_quantity %></td>
+      <%= form_for :cart_item, url: cart_item_index_path(id: product.id), :method => :post do |f| %>
+        <td>
+          <div class="form-group">
+            <%= select_tag(:quantity, '<option value="1">1</option><option value="2">2</option><option value="3">3</option>'.html_safe) %></td>
+          </div>
+        </td>
+      
+        <td><%=link_to image_tag(product.image.url(:thumb), :class => "img-circle"), product.image.url, :popup=>['large_image', 'height=1000,width=1000'] %>
+          <% if product.available_quantity > 0 %>
+            <% if current_user.present? %>
+              <% if current_user.is_buyer? %>
+                <%= f.submit  "Add to Cart", :class=> "btn btn-info", :role=> "button"%>
+              <% end %>
+            <% else %>
+              <%= button_to  "buy", new_user_registration_path, :class=> "btn btn-info", :method => :get %>
+            <% end %>    
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

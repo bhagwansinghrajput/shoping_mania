@@ -2,131 +2,59 @@
 
 <% if current_user.present? %>
   <% if current_user.is_admin? %>
-    <%= link_to "All users", users_path , :class => "button", :method => :get %><br /><br />
-    <%= link_to "All buyers", buyers_path, :type => 'button', :method => :get %><br />
-  <% elsif current_user.is_user? %>
-    <%= link_to "Add products", new_product_path , :class => "button", :method => :get %><br /><br />
-    <%= link_to "All products", products_path, :class => "button", :method => :get %><br />
-  <% else %>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-2" style="background-color:aliceblue;"><strong>Categories</strong><br />
-          <% @categories.each do |c| %>
-          <%= link_to c, home_index_path(categories_name: c) %>
-          <br />
-          <%end%>
-
-        </div>
-
-          <div class="col-sm-8" style="background-color:lavender;">
-            <%= link_to "Your Cart", cart_item_index_path , :class => "button", :method => :get %><br /><br />
-            
-            <%= form_tag(home_index_path, method: :get) do %>
-                     <%= label_tag(:search, "Search name:") %>
-                     <%= text_field_tag(:search) %>
-                     <%= submit_tag("Search") %>
-            <% end %>
-             
-            <h2>Products</h2>
-            <table class="table table-hover" >
-              <tr>
-                <th>Sr.no.</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Availeble Quantity</th>
-                <th>Quantity</th>
-                <th>Image</th>
-              </tr>
-              
-              <% n = 0 %>
-
-              <% if current_user.is_buyer? %>
-                <% @products.each do |product| %>
-                  <tr>
-                    <td><%= n = n + 1 %></td>
-                    <td><%= product.name.capitalize %></td>
-                    <td>Rs.<%= product.price %></td>
-                    <td><%= product.available_quantity %></td>
-                    <%= form_for :cart_item, url: cart_item_index_path(id: product.id), :method => :post do |f| %>
-                      <td>
-                        <div class="form-group">
-                          <%= select_tag(:quantity, '<option value="1">1</option><option value="2">2</option><option value="3">3</option>'.html_safe) %></td>
-                        </div>
-                      </td>
-                      <td><%=link_to image_tag(product.image.url(:thumb), :class => "img-circle"), product.image.url, :popup=>['large_image', 'height=1000,width=1000'] %>
-                      <% if product.available_quantity > 0 %>
-                        <%= f.submit  "Add to Cart", :class=> "btn btn-info", :role=> "button"%></td>
-                      <% end %>
-                    <% end %>
-                  </tr>
-                <% end %>
-              <% end %>  
-            </table>
-          </div>
-          <div class="col-sm-2" style="background-color:azure;">Diwali offers
-        </div>
-      </div>
-    </div> 
-    <%= will_paginate @products %>
-  <% end %> 
-<% else %>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-2" style="background-color:azure;">Categories<br />
-        <% @categories.each do |c| %>
-        <%=link_to c, home_index_path %><br />
-      <%end%>
-      </div>
-        <div class="col-sm-8" style="background-color:lavender;">
-          <h2>Products</h2>
-          <%= form_tag('/home/index', method: :get) do %>
-            <%= label_tag(:search, "Search name:") %>
-            <%= text_field_tag(:search) %>
-            <%= submit_tag("Search") %>
-          <% end %>
-                 
-          <table class="table table-hover" >
-            <tr>
-              <th>Sr.no.</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Available Quantity</th>
-              <th>Quantity</th>
-              <th>Image</th>
-            </tr>
-            <% n = 0 %>
-            <% @products.each do |product| %>
-              <tr>
-                <td><%= n = n + 1 %></td>
-                <td><%= product.name.capitalize %></td>
-                <td>Rs.<%= product.price %></td>
-                <td><%= product.available_quantity %></td>
-                  <td>
-                    <div class="form-group">
-                      <%= select_tag(:quantity, '<option value="1">1</option><option value="2">2</option><option value="3">3</option>'.html_safe) %></td>
-                    </div>
-                  </td>
-                  <td><%=link_to image_tag(product.image.url(:thumb), :class => "img-circle"), product.image.url, :popup=>['large_image', 'height=1000,width=1000'] %>
-                    <%= button_to  "buy", new_user_registration_path, :class=> "btn btn-info", :method => :get %>
-                  </td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-        <div class="col-sm-2" style="background-color:azure;">Diwali offers
-        </div>
-      </div>
-    </div>
-  </div>
-  <%= will_paginate @products %>
+    <%= link_to "All users", users_path , :class => "button", :method => :get %><br />
+    <%= link_to "All buyers", buyers_path, :type => 'button', :method => :get %>
+  <% end %>
+  <% if current_user.is_user? %>
+    <%= link_to "Add products", new_product_path , :class => "button", :method => :get %><br />
+    <%= link_to "All products", products_path, :class => "button", :method => :get %>
+  <% end %>
 <% end %>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2" style="background-color:aliceblue;"><strong>Categories</strong><br />
+      <% @categories.each do |c| %>
+        <%= link_to c, home_index_path(categories_name: c) %><br />
+      <%end%>
+    </div>
 
+    <div class="col-sm-8" style="background-color:lavender;"><br />
+      <% if current_user.present? %>
+        <% if current_user.is_buyer? %>
+          <%= link_to "Your Cart", cart_item_index_path , :class => "button", :method => :get %><br /><br />
+        <% end %>
+      <% end %>
+      
+      <%= form_tag(search_products_path, method: :get, remote: true) do %>
+        <%= label_tag(:search, "Search name:") %>
+        <%= text_field_tag(:search, nil, :id => "product_name") %>
+        <%= submit_tag("Search") %>
+      <% end %>
+       
+      <h2>Products</h2>
+      <div id="product-modal">
+        <%= render :partial => "product_list" %>
+      </div>
+    </div>
+    <div class="col-sm-2" style="background-color:azure;">Diwali offers
+    </div>
+  </div>
+</div> 
+<%= will_paginate @products %>
+  
 
-
-
-
-
+<script type="text/javascript">
+  $(document).on("keyup", "#product_name", function() {
+    var keyword = $(this).val();
+    if (keyword.length > 2 || keyword.length == 0){
+      $.ajax({
+        url: "<%= search_products_path %>",  
+        data: {search: keyword}
+      }); 
+    }    
+  });
+</script>
 
 
 
