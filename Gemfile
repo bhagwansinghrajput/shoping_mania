@@ -6,7 +6,6 @@ gem 'rails', '4.2.4'
 
 
 # Use postgresql as the database for Active Record
-gem 'ruby', '2.0.0'
 gem 'pg'
 gem 'devise'
 gem "mini_magick"
