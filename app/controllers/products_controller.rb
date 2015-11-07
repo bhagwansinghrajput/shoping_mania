@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   autocomplete :category, :name
   before_filter :id_for_use, only: [:show, :update, :edit, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :search
   
   def index
     if current_user.is_user?
@@ -14,20 +14,17 @@ class ProductsController < ApplicationController
 
   def new
     @product = current_user.products.new
-
-   
   end
   
   def create 
     @product = current_user.products.new(product_params)
-    
     if @product.save
       Product.transaction do
         category = Category.where("name ilike ?", params[:category_name]).first
         if params[:category_name].present?
           category.blank? ? category = @product.categories.create!(name: params[:category_name]) : @product.category_products.create!(:category_id => category.id)
         else
-          flash[:error] = "Please enter category."
+          flash[:error] = "Please fill category name."
           render 'new' and return
         end
       end     
@@ -37,6 +34,7 @@ class ProductsController < ApplicationController
       render 'new'
     end
   end
+  
   
   def update
     if @product.update(product_params)
@@ -92,5 +90,6 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:user_id, :name, :price, :quantity, :shipping_charge, :image, categories_attributes: [:name,:_destroy])
   end
+  
 end
 
