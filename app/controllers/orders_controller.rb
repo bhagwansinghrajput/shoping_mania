@@ -4,16 +4,11 @@ before_filter :initialize_cart_items_to_buy, only: [:create]
 before_action :authenticate_user!
 
   def index
-    if user_signed_in?
-      if current_user.orders.present?
-        @orders = current_user.orders.reorder('id DESC')
-      else
-       flash[:error] = "Orders not available" 
-       redirect_to cart_item_index_path and return
-      end
+    if current_user.orders.present?
+      @orders = current_user.orders.reorder('id DESC')
     else
-      flash[:error] = "please sign in as a buyer"
-      redirect_to home_index_path
+     flash[:error] = "Orders not available" 
+     redirect_to cart_item_index_path and return
     end
   end
   

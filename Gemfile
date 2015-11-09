@@ -15,6 +15,7 @@ gem "twitter-bootstrap-rails"
 gem 'will_paginate', '~> 3.0.6'
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete' 
+gem 'rails_12factor', group: :production
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
