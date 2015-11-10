@@ -7,7 +7,9 @@ class User < ActiveRecord::Base
   has_one :cart
   has_many :products
   has_many :orders
+  validates :first_name, :last_name, :contact_no, :address, :city, :country, :state, :zipcode, :role, presence: true
   
+
   ROLE = {"admin" => 0, "user" => 1, "buyer" => 2} 
   
   def is_admin?

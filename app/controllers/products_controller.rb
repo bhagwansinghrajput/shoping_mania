@@ -13,25 +13,31 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = current_user.products.new
+    if current_user.permission == true
+      @product = current_user.products.new
+    else
+      flash[:error] = "Your are not eligible for add product."
+      redirect_to products_path
+    end 
   end
   
   def create 
     @product = current_user.products.new(product_params)
-    if @product.save
-      Product.transaction do
+    Product.transaction do
+      if @product.save
         category = Category.where("name ilike ?", params[:category_name]).first
         if params[:category_name].present?
           category.blank? ? category = @product.categories.create!(name: params[:category_name]) : @product.category_products.create!(:category_id => category.id)
         else
           flash[:error] = "Please fill category name."
           render 'new' and return
-        end
-      end     
-      redirect_to products_path
-    else
-      flash[:error] = @product.errors.full_mesages.join("<br>").html_safe
-      render 'new'
+        end 
+        flash[:success] = "Product added successfully."    
+        redirect_to products_path
+      else
+        flash[:error] = @product.errors.full_mesages.join("<br>").html_safe
+        render 'new'
+      end
     end
   end
   
@@ -48,12 +54,18 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.present?
-      @product.destroy
-      redirect_to products_path
+    if current_user.permission == true
+      if @product.present?
+        @product.destroy
+        flash[:success] = "Product deleted."
+        redirect_to products_path
+      else
+        flash[:error] = "Product not available."
+        redirect_to products_path
+      end
     else
-      flash[:error] = "Product not available."
-      redirect_to products_path
+      flash[:error] = "You can not delete product."
+      products_path
     end
   end
 

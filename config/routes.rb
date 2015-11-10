@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
    
-  resources :users
+  resources :users do
+    collection do
+      post :permit_for_add_items
+    end
+  end
   resources :buyers
   resources :products do
     member do

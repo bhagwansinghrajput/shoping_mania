@@ -9,5 +9,6 @@ class AddFieldInUser < ActiveRecord::Migration
     add_column :users, :country, :string
     add_column :users, :zipcode, :integer
     add_column :users, :role, :integer
+    add_column :users, :permission, :boolean, default: false
   end
 end

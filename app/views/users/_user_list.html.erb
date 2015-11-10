@@ -1,0 +1,19 @@
+<% n = 0 %>
+  <% if current_user.is_admin? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= n = n + 1 %></td>
+        <td><%= user.first_name.capitalize rescue '' %> <%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.contact_no %></td>
+        <td><%= user.address.capitalize rescue '' %></td>
+        <td><%= user.zipcode %></td>
+        <% if user.permission == false %>
+          <td><%= button_to "Permit to add items", permit_for_add_items_users_path(:id => user.id), :class => "btn btn-success", :id => "user_permit", remote: true, methode: :post %></td>
+        <% else %>
+          <td><%= button_to "Disable", permit_for_add_items_users_path(:id => user.id), :class => "btn btn-success", :id => "user_permit", remote: true, methode: :post %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+
