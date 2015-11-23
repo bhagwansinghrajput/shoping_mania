@@ -1,0 +1,25 @@
+
+<%= link_to "Your Cart", cart_item_index_path , :class => "button", :method => :get %><br />
+
+<%= link_to "All products", root_path , :class => "button", :method => :get %><br /><br />
+<table class="table-bordered table-hover" >
+      <tr>
+      <th>shipping_charge </th>
+      <th> tax_amount </th>
+      <th> discount_on_promocode </th>
+      <th> net_amount </th>
+      <th> status </th>
+      <th> shipping_date </th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.shipping_charge %></td>
+        <td><%= order.tax_amount %></td>
+        <td><%= order.discount_on_promocode %></td>
+        <td><%= order.net_amount %></td>
+        <td><%= order.status %></td>
+        <td><%= order.shipping_date %></td>
+      </tr>
+    <% end %>
+</table>
+

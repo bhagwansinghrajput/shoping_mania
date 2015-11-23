@@ -1,0 +1,36 @@
+<div>
+  <% @products.each_with_index do |product, index| %>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <div class="recent-work-wrap">
+        <%=link_to image_tag(product.image.url(:thumb), :class => "img-responsive product-image"),'#' %>
+        <%#= link_to product_path(product.id) do %>
+          <div class="overlay">
+            <div class="recent-work-inner">
+              <h3><%= product.name.capitalize %></h3> 
+              Rs.<%= product.price %><br>
+              Available Quantity (<%= product.available_quantity %>)
+              <%= form_for :cart_item, url: cart_item_index_path(id: product.id), :method => :post do |f| %>
+                <div class="form-group">
+                  Add Quantity <%= select_tag(:quantity, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe) %>
+                </div>                
+                <a class="preview" rel="prettyPhoto"></i>
+                  <% if product.available_quantity > 0 %>
+                    <% if current_user.present? %>
+                      <% if current_user.is_buyer? %>
+                        <%= f.submit  "Add to Cart", :class=> "btn btn-info", :role=> "button", data: { confirm: 'Are you sure item add in your cart.'} %>
+                      <% end %>
+                    <% else %>
+                      <%= button_to  "buy", new_user_registration_path, :class=> "btn btn-info", :method => :get %> 
+                    <% end %>
+                  <% end %>
+                </a>
+              <% end %>
+              <%= social_share_button_tag(product.name) %>     
+            </div> 
+          </div>
+        <%# end %>
+      </div>
+    </div> 
+  <% end %> 
+</div>
+

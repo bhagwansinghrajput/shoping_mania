@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="pull-left">
+            <i class="fa fa-phone"></i>
+        </div>
+        <div class="media-body">
+          <h2>Have a question or need a custom quote?</h2>
+          <p>Please contact our excutives by phone.......
+            <div class="top-number"><p style="color: black" ><i class="fa fa-phone-square"></i>  +91 900 940 890 8</p>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" id="googleMap" style="width:500px;height:380px;"></div>
+  </div>
+</div><!--/.container-->   
+
+<!-- js for google map start -->
+<script>
+  var myCenter=new google.maps.LatLng(22.7000, 75.9000);
+
+  function initialize()
+  {
+  var mapProp = {
+    center:myCenter,
+    zoom:6,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  var marker=new google.maps.Marker({
+    position:myCenter,
+    });
+
+  marker.setMap(map);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<!-- js for google map end -->

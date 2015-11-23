@@ -1,0 +1,24 @@
+<title>All Products</title>
+
+<% if current_user.is_user? %>
+  <h2>Products</h2>
+  <%= link_to "Add more products", new_product_path , :class => "button btn btn-primary", :method => :get %><br /><br />
+  <%= link_to "View orders", all_orders_product_path(:id), :class=> "button btn btn-primary", method: :get %><br />
+  <table class="table-hover">
+    <tr>
+      <th>Sr.no.</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Available_quantity</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+    
+    <div id="user_products">
+      <%= render :partial => "products_list" %>
+    </div>
+  </table>
+<% end %>
+
+
+    

@@ -1,0 +1,17 @@
+
+<table>
+    <tr>
+      <th>order_id</th>
+      <th>shipping_date</th>
+      <th>net_amount</th>
+      <th>user_id</th>
+    </tr>
+    <% @view_orders.each do |order|%>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.shipping_date %></td>
+        <td><%= order.net_amount %></td>
+        <td><%= order.user_id %></td>
+      </tr>
+    <% end %>
+  </table><br />

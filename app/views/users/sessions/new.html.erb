@@ -1,0 +1,50 @@
+<div class="well bs-component login-div">
+  <div class="form-horizontal">
+    <fieldset>
+      <legend>Log in <strong>Or</strong> <%= link_to image_tag("/assets/fb_login.png", :style => "width: 180px;"), user_omniauth_authorize_path(:facebook) %></legend>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group field">
+            <%= f.label :email, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+            <div class="col-lg-10">
+              <%= f.email_field :email, :class => "form-control", :placeholder => "email address", autofocus: true %>
+            </div>
+          </div>
+
+          <div class="form-group field">
+            <%= f.label :password, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+            <div class="col-lg-10">
+              <%= f.password_field :password, :class => "form-control", :placeholder => "password", autocomplete: "off"%>
+            </div>
+          </div>
+          <% if devise_mapping.rememberable? -%>
+            <div class="form-group field">
+              <div class="col-lg-10 col-lg-offset-2">
+              
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              
+              </div>
+            </div>
+          <% end -%>
+
+
+          <div class="form-group actions">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit "Log in", :class => "btn btn-primary" %>
+            </div>
+          </div>
+          
+          
+        <% end %>
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= render "users/shared/links" %>
+          </div>
+        </div>
+
+     </fieldset>
+    </fieldset>
+  </div>
+</div>
+

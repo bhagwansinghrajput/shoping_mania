@@ -1,0 +1,41 @@
+<div class="left center">
+  <% if @product.present? %>
+    <% if current_user.present? %>
+      <% if current_user.is_user? %>
+        <%= link_to 'Edit', edit_product_path(@product) %>|
+        <%= link_to 'Back to  all products', products_path  %>
+    <h3>
+      <% end %>
+    <% end %> 
+    
+      <p>
+        <strong>Name:</strong>
+        <%= @product.name.capitalize %>
+      </p>
+       
+      <% if current_user.present? %>
+        <% if current_user.is_user? %>
+          <p>
+            <strong>Quantity:</strong>
+            <%= @product.quantity %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <p>
+        <strong>Price:</strong>
+        <%= @product.price %>
+      </p>
+    </h3>
+
+    <p>
+      <strong>Image:</strong>
+      <%= image_tag @product.image_url(:thumb), :class => "img-circle" %>
+    </p>
+  <% else %>
+    <% home_index_path %>
+  <% end %>
+</div>
+
+
+

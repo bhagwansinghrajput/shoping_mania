@@ -1,0 +1,17 @@
+<% @products.each do |product| %>
+  <tr>
+    <div id="product_name">
+      <td><%= product.name.capitalize %></td>
+      <td><%= product.quantity %></td>
+      <td><%= product.available_quantity %></td>
+      <td><%= product.price %></td>
+      <td><%= image_tag product.image_url(:thumb), :class => "img-circle" %>
+        <i><%= link_to "Edit", edit_product_path(product.id) , :class => "button", :method => :get %><br />
+          <%= link_to 'Delete product', product_path(product),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+        </i><br />
+      </td>
+  </tr>
+<% end %>
+   

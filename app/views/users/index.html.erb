@@ -1,0 +1,33 @@
+
+<% if current_user.is_admin? %>
+  <h2>Users</h2>
+  <table class="table-hover">
+    <tr>
+      <th>Sr.no.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Contact</th>
+      <th>Address</th>
+      <th>Zipcode</th>
+    </tr>
+    <tbody>
+      <% n = 0 %>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= n = n + 1 %></td>
+            <td><%= user.first_name.capitalize rescue '' %> <%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.contact_no %></td>
+            <td><%= user.address.capitalize rescue '' %></td>
+            <td><%= user.zipcode %></td>
+            <td><%= button_to (user.permission == false ? "Permit to add items" : "Disable"), permit_for_add_items_user_path(user.id), :class => "btn btn-primary btn-size", :id => "user_permit_#{user.id}", remote: true, method: :post %>
+            </td>
+            <td><%= link_to 'Delete user', user_path(user), :class => "btn btn-danger",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% end %>

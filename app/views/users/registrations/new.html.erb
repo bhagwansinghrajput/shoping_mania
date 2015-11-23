@@ -1,0 +1,156 @@
+<div class="well bs-component login-div">
+    <div class="form-horizontal">
+      <fieldset>
+        <legend>Sign up <strong>or</strong> <%= link_to image_tag("/assets/fb_login.png", :style => "width: 180px;"), user_omniauth_authorize_path(:facebook) %></legend>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            
+        <div class="form-group">
+          <%= f.label :first_name, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name", autofocus: true %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :email, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.email_field :email, :class => "form-control", :placeholder => "email" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.password_field :password, :class => "form-control", :placeholder => "password", autocomplete: "off" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "password_confirmation", autocomplete: "off" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :contact_no, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :contact_no, :class => "form-control", :placeholder => "contact number" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Login as</label>
+          <div class="col-lg-10">
+            <div class="radio">
+              <label>
+                <%= f.radio_button :role, "1" %>User (If add product please select user)<br />
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+              <%= f.radio_button :role, "2" %>Buyer (If buy items please select buyer)<br />
+              </label>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="form-group">
+          <%= f.label :address, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :address, :class => "form-control", :placeholder => "address" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :city, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :city, :class => "form-control", :placeholder => "city" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :state, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :state, :class => "form-control", :placeholder => "state" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :country, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :country, :class => "form-control", :placeholder => "country" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :zipcode, :class => "col-lg-2 control-label", :for => "inputEmail" %>
+          <div class="col-lg-10">
+            <%= f.text_field :zipcode, :class => "form-control", :placeholder => "zipcode" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit "Sign up", :class => "btn btn-primary" %>
+          </div>
+        </div>
+        <% end %>
+      </fieldset>
+    </div>
+  <div class="btn btn-primary btn-xs" id="source-button" style="display: none;">&lt; &gt;</div>
+</div>
+<%= link_to "Facebook",user_omniauth_authorize_path(:facebook)%>
+<!-- <div>
+  <div class="left login-div" style = "margin-top: 25px;">
+    <h2>Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="field">
+        <%= f.radio_button :role, "1" %>User (If add product please select user)<br />
+        <%= f.radio_button :role, "2" %>Buyer (If buy items please select buyer)<br />
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name %><br />
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name %><br />
+        <%= f.label :contact_no %><br />
+        <%= f.text_field :contact_no %><br />
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %><br />
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %><br />
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
+        <%= f.label :address %><br />
+        <%= f.text_field :address %><br />
+        <%= f.label :city %><br />
+        <%= f.text_field :city %><br />
+        <%= f.label :state %><br />
+        <%= f.text_field :state %><br />
+        <%= f.label :country %><br />
+        <%= f.text_field :country %><br />
+        <%= f.label :zipcode %><br />
+        <%= f.text_field :zipcode %><br />
+      </div><br />
+      <div class="actions">
+        <%= f.submit "Sign up", :class => "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+ -->

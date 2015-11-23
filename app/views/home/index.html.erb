@@ -1,0 +1,48 @@
+<%= render :partial => "main_slider" %>
+<%= render :partial => "middile_section" %> 
+
+<section id="conatcat-info" class="searchbyscroll">
+  <%= render :partial => "contact" %>  
+</section><!--/#conatcat-info-->
+
+<%= render :partial => "/layouts/partial/second_footer" %>
+
+<!-- js for search and scroll index start -->
+<script type="text/javascript">
+  $(document).on("keyup", "#product_name", function() {
+    var keyword = $(this).val();
+    if (keyword.length > 2 || keyword.length == 0){
+      $.ajax({
+        url: "/products/search",  
+        data: {search: keyword}
+      }); 
+    }    
+  });
+
+
+  $(document).on('click', '.go-contact', function (e) {
+    jQuery('html,body').animate({ scrollTop: jQuery('.searchbyscroll').offset().top}, 1500);
+    return false;
+    e.preventDefault();
+  });
+
+  $(document).on('click', '.go-about', function (e) {
+    jQuery('html,body').animate({ scrollTop: jQuery('.searchbyscrollabout').offset().top}, 1000);
+    return false;
+    e.preventDefault();
+  });
+
+  $(document).on('click', '.go-home', function (e) {
+    jQuery('html,body').animate({ scrollTop: jQuery('.searchbyscrollhome').offset().top}, 1000);
+    return false;
+    e.preventDefault();
+  });
+
+  $(document).on('click', '.go-products', function (e) {
+    jQuery('html,body').animate({ scrollTop: jQuery('.searchbyscrollproducts').offset().top}, 1000);
+    return false;
+    e.preventDefault();
+  });
+</script>
+<!-- js for search and scroll index end -->
+

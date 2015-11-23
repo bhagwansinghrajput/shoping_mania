@@ -1,0 +1,24 @@
+<div class="header searchbyscrollhome" style = "height:34px";>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-xs-4">
+        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +91 900 940 890 8</p></div>
+      </div>
+      <div class="col-sm-6 col-xs-8">
+        <div class="social">
+          <ul class="social-share">
+            <%= social_share_button_tag :url => request.url, :popup => "true" %>
+          </ul>
+          <div class="search">
+            <%= form_tag(search_products_path, method: :get, remote: true) do %>
+              <%= text_field_tag(:search, nil, :id => "product_name", :class => "search-form", :placeholder =>            "Search product by name") %>
+              <%= button_tag(type: "submit", :class => "search_btn") do %>
+                <i class="fa fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

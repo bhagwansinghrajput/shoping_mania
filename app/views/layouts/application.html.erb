@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<head><title>Shop mania</title>
+  <div class="navbar">
+    <header id="header">
+      <%= render "/layouts/partial/top_header" %>
+      <nav class="navbar navbar-inverse" role="banner" style="padding-top: 0px;">
+        <%= render "/layouts/partial/menu_header" %>
+      </nav>
+    </header>
+  </div>
+</head>
+
+<body>
+  <div class="container">
+    <div style="width: 500px;">
+      <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+          <div class="alert_margin alert alert-<%= name == "error" ? "danger" : "success" %>">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg.html_safe, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+        <% flash.discard(name) %>
+      <% end %>
+    </div>
+  </div>
+  <%= yield %>
+</body>
+<div class="navbar-fixed-bottom">
+  <%= render "/layouts/partial/footer" %>
+</div>
+
+

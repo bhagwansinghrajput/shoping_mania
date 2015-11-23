@@ -1,0 +1,36 @@
+<% if current_user.present? %>
+  <div class="left">
+    <h3>Products List </h3>
+    <table class="table-hover" >
+      <tr>
+        <th>Sr.no.</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Prize</th>
+        <th>Options</th>
+      </tr>
+      <% n = 0 %>
+      <% if current_user.is_buyer? %>
+        <%= button_to "My orders",  orders_path, :class => "btn btn-primary", :method => :get %> _
+        <%= link_to 'Back to  all products', root_path, :class => "btn btn-primary", :method => :get %> _
+        <%= link_to "Buy all", orders_path, :class => "btn btn-primary", data: { confirm: 'Are you sure? buy all items' }, method: :post  %>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= n = n + 1 %></td>
+            <td><%= cart_item.name.capitalize %></td>
+            <td><%= cart_item.quantity %></td>
+            <td>Rs.<%= cart_item.price %></td>
+            <td><%= link_to 'Delete product', cart_item_path(cart_item), :type => "button",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></i></td>
+            <td><%= link_to "Buy", orders_path(item_id: cart_item.id), :method => :post, data: { confirm: 'Are you sure? buy this item' } %> </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+<%= flash[:error] = "Please sign in first..."%>
+<% end %>  
+
+
