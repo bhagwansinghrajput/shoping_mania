@@ -1776,7 +1776,7 @@ ul.social_icons li  a i{
 
 .pricing-area .heading-six, 
 .pricing-area .price-six .plan-action 
-;
+
 }
 
 .pricing-area .heading-seven, 
@@ -1845,8 +1845,7 @@ ul.social_icons li  a i{
 .pricing-area .plan-action .btn-primary {
   position: relative;
   padding:5px 20px;
-  color: #fff
-;
+  color: #fff;
   margin-top: 5px;
 }
 
