@@ -16,11 +16,12 @@
         <td><%= buyer.first_name.capitalize %> <%= buyer.last_name %></td>
         <td><%= buyer.email %></td>
         <td><%= buyer.contact_no %></td>
-        <td><%= buyer.address.capitalize %></td>
+        <td><%= buyer.address.capitalize rescue '' %></td>
         <td><%= buyer.zipcode %></td>
         <td><%= link_to 'Delete buyer', buyer_path(buyer), :class => "btn btn-danger",
             method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View orders', buyer_orders_admin_path(buyer.id), :class => "btn btn-warning" %></td>
       </tr>
     <% end %>
   </table>

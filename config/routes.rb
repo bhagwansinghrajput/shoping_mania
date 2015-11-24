@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :admin do
     collection do
-      get 'all_users', :path => "/users"
-      get 'all_buyers', :path => "/buyers"
+      get :all_users, :path => "/users"
+      get :all_buyers, :path => "/buyers"
+      get :maximum_sell_products
     end 
     member do
       post :permit_for_add_items
+      get :buyer_orders
     end
   end 
   resources :users do

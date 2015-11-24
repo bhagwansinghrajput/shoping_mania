@@ -1,0 +1,17 @@
+<table class="table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Sold quantity</th>
+    <th>price</th>
+    <th>Image</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <div id="product_name">
+        <td><%= product.name.capitalize %></td>
+        <td><%= product.sold_quantity %></td>
+        <td><%= product.price %></td>
+        <td><%= image_tag product.image_url(:thumb), :class => "img-circle" %>
+        </td>
+    </tr>
+  <% end %>

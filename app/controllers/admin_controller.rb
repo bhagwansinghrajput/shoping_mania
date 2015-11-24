@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
-  before_filter :authenticate_admin, only: [:permit_for_add_items]
+  before_filter :authenticate_admin, only: [:permit_for_add_items, :maximum_sell_products, :buyer_orders]
   before_filter :find_user, only: [:permit_for_add_items]
 
 
@@ -8,6 +8,14 @@ class AdminController < ApplicationController
     
   end
 
+  def buyer_orders
+    @buyer = User.where("id = ?", params[:id].to_i).first
+    @orders_of_buyer = @buyer.orders
+  end  
+
+  def maximum_sell_products
+    @products = Product.all.reorder(('sold_quantity DESC'))
+  end
   
   def authenticate_admin
     unless current_user.is_admin?
