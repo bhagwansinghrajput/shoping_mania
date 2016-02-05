@@ -13,7 +13,10 @@
  *= require_tree .
  *= require_self
  *= require_custom
+<<<<<<< HEAD
  *= require nprogress
  *= require nprogress-bootstrap
  *= require social-share-button
+=======
+>>>>>>> master
  */

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+<<<<<<< HEAD
   before_filter :find_user, only: [:destroy, :permit_for_add_items]
   before_filter :authenticate_admin, only: [:index, :destroy]
   def index
@@ -43,4 +44,14 @@ class UsersController < ApplicationController
 
   
 
+=======
+  
+  def index
+    if current_user.is_admin?
+      @users = User.where(role: User::ROLE["user"])
+    else
+      home_index_path     
+    end
+  end 
+>>>>>>> master
 end

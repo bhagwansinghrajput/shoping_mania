@@ -1,25 +1,36 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+<<<<<<< HEAD
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+=======
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+>>>>>>> master
   has_many :cart_items, through: :cart
   has_one :cart
   has_many :products
   has_many :orders
+<<<<<<< HEAD
   validates :first_name, :last_name, :contact_no, :address, :city, :country, :state, :zipcode, :role, presence: true
   scope :all_buyers, -> { where(role: 2) }
   scope :all_users, -> { where(role: 1) }
 
   ROLE = {"admin" => 0, "users" => 1, "buyers" => 2} 
+=======
+  
+  ROLE = {"admin" => 0, "user" => 1, "buyer" => 2} 
+>>>>>>> master
   
   def is_admin?
     self.role == ROLE["admin"]
   end
   
   def is_user?
+<<<<<<< HEAD
     self.role == ROLE["users"]
   end
   
@@ -75,6 +86,13 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+=======
+    self.role == ROLE["user"]
+  end
+  
+  def is_buyer?
+    self.role == ROLE["buyer"]
+>>>>>>> master
   end
   
 end

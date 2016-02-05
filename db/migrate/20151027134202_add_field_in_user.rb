@@ -9,6 +9,9 @@ class AddFieldInUser < ActiveRecord::Migration
     add_column :users, :country, :string
     add_column :users, :zipcode, :integer
     add_column :users, :role, :integer
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
   end
 end

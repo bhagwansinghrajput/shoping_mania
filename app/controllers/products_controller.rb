@@ -1,7 +1,11 @@
 class ProductsController < ApplicationController
   autocomplete :category, :name
   before_filter :id_for_use, only: [:show, :update, :edit, :destroy]
+<<<<<<< HEAD
   before_action :authenticate_user!, except: [:search, :show]
+=======
+  before_action :authenticate_user!, except: :search
+>>>>>>> master
   
   def index
     if current_user.is_user?
@@ -13,6 +17,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+<<<<<<< HEAD
     if current_user.permission == true
       @product = current_user.products.new
     else
@@ -39,6 +44,27 @@ class ProductsController < ApplicationController
         flash[:error] = @product.errors.full_mesages.join("<br>").html_safe
         render 'new'
       end
+=======
+    @product = current_user.products.new
+  end
+  
+  def create 
+    @product = current_user.products.new(product_params)
+    if @product.save
+      Product.transaction do
+        category = Category.where("name ilike ?", params[:category_name]).first
+        if params[:category_name].present?
+          category.blank? ? category = @product.categories.create!(name: params[:category_name]) : @product.category_products.create!(:category_id => category.id)
+        else
+          flash[:error] = "Please fill category name."
+          render 'new' and return
+        end
+      end     
+      redirect_to products_path
+    else
+      flash[:error] = @product.errors.full_mesages.join("<br>").html_safe
+      render 'new'
+>>>>>>> master
     end
   end
   
@@ -55,6 +81,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+<<<<<<< HEAD
     if current_user.permission == true
 
       if @product.present?
@@ -66,6 +93,13 @@ class ProductsController < ApplicationController
       end
     else
       flash[:error] = "You can not delete product."
+=======
+    if @product.present?
+      @product.destroy
+      redirect_to products_path
+    else
+      flash[:error] = "Product not available."
+>>>>>>> master
       redirect_to products_path
     end
   end
@@ -90,10 +124,14 @@ class ProductsController < ApplicationController
   end
 
   def id_for_use
+<<<<<<< HEAD
     if current_user.present?
       @product = current_user.products.where("id = ?", params[:id]).first if current_user.is_user?
     end
       @product = Product.where("id = ?", params[:id]).first
+=======
+    @product = current_user.products.where("id = ?", params[:id]).first
+>>>>>>> master
   end
 
   def autocomplete_category_name

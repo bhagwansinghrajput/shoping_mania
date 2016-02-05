@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% if current_user.is_admin? %>
   <h2>Buyers</h2>
   <table class="table-hover">
@@ -10,12 +11,28 @@
       <th>Zipcode</th>
     </tr>
     <% n = 0 %>
+=======
+
+<h2>Buyers</h2>
+<table>
+  <tr>
+    <th>Sr.no.</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Address</th>
+    <th>Zipcode</th>
+  </tr>
+     <% n = 0 %>
+  <% if current_user.is_admin? %>
+>>>>>>> master
     <% @buyers.each do |buyer| %>
       <tr>
         <td><%= n = n + 1 %></td>
         <td><%= buyer.first_name.capitalize %> <%= buyer.last_name %></td>
         <td><%= buyer.email %></td>
         <td><%= buyer.contact_no %></td>
+<<<<<<< HEAD
         <td><%= buyer.address.capitalize rescue '' %></td>
         <td><%= buyer.zipcode %></td>
         <td><%= link_to 'Delete buyer', buyer_path(buyer), :class => "btn btn-danger",
@@ -26,3 +43,13 @@
     <% end %>
   </table>
 <% end %>
+=======
+        <td><%= buyer.address.capitalize %></td>
+        <td><%= buyer.zipcode %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
+>>>>>>> master

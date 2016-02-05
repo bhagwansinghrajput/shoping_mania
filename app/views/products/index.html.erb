@@ -1,9 +1,17 @@
 <title>All Products</title>
 
 <% if current_user.is_user? %>
+<<<<<<< HEAD
   <h2>Products</h2>
   <%= link_to "Add more products", new_product_path , :class => "button btn btn-primary", :method => :get %><br /><br />
   <%= link_to "View orders", all_orders_product_path(:id), :class=> "button btn btn-primary", method: :get %><br />
+=======
+  <%= link_to "Add more products", new_product_path , :class => "button", :method => :get %><br /><br />
+
+  <h2>Products</h2>
+
+  <%= link_to "View orders", all_orders_product_path(:id), class: "button", method: :get %><br /><br />
+>>>>>>> master
   <table class="table-hover">
     <tr>
       <th>Sr.no.</th>

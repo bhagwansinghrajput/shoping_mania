@@ -16,12 +16,15 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete' 
 gem 'rails_12factor', group: :production
+<<<<<<< HEAD
 gem 'nprogress-rails'
 gem 'social-share-button'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+=======
+>>>>>>> master
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'

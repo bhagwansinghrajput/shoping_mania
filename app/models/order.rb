@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+<<<<<<< HEAD
 
   belongs_to :user
   has_many :order_details
@@ -30,5 +31,9 @@ class Order < ActiveRecord::Base
     end
   end  
 
+=======
+  belongs_to :users
+  has_many :order_details
+>>>>>>> master
  
 end

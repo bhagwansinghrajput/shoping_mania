@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'admin/index'
 
   get 'home/index'
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+=======
+  get 'home/index'
+
+  devise_for :users
+>>>>>>> master
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+<<<<<<< HEAD
   resources :admin do
     collection do
       get :all_users, :path => "/users"
@@ -27,6 +34,10 @@ Rails.application.routes.draw do
       post :permit_for_add_items
     end
   end
+=======
+   
+  resources :users
+>>>>>>> master
   resources :buyers
   resources :products do
     member do
@@ -42,6 +53,12 @@ Rails.application.routes.draw do
   resources :cart
   resources :cart_item
   resources :orders
+<<<<<<< HEAD
+=======
+  resources :bhagwan
+  resource :sumit
+   
+>>>>>>> master
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

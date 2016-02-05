@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
+<<<<<<< HEAD
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <head><title>Shop mania</title>
@@ -34,4 +35,52 @@
   <%= render "/layouts/partial/footer" %>
 </div>
 
+=======
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="header">
+    <div class="right" >
+      <% if user_signed_in? %>
+        <ul>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          |
+          <%= link_to('Edit profile', edit_user_registration_path, :method => :get) %>
+        </ul>
+      <% else %>
+        <ul>
+          <%= link_to('Login', new_user_session_path)  %> 
+          |
+          <%= link_to('Sign up', new_user_registration_path)  %>
+        </ul>
+      <% end %>
+    </div>
+    <a href="/home/index">
+      <img src="/assets/logo.png" alt="logo feed"  width=200px />
+    </a><br />
+  </div>
+</div><br><br><br><br><br>
+
+<body>
+  <%= button_to 'Home', root_path, :class => "btn btn-default btn-xs", :method => :get %>
+  <%= link_to 'Back', 'javascript:history.go(-1);' %>
+  <div style="width: 500px;">
+    <% if flash[:success]  %>
+      <div class = "alert alert-success" ><%= flash[:success] %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      </div>
+    <% end %>
+   
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&#215;</a>
+          <%= content_tag :div, msg.html_safe, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
+      <% flash.discard(name) %>
+    <% end %>
+  </div>
+  <%= yield %>
+</body>
+>>>>>>> master
 

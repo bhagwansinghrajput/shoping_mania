@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= render :partial => "main_slider" %>
 <%= render :partial => "middile_section" %> 
 
@@ -8,16 +9,69 @@
 <%= render :partial => "/layouts/partial/second_footer" %>
 
 <!-- js for search and scroll index start -->
+=======
+<title>Shop Mania</title>
+
+<% if current_user.present? %>
+  <% if current_user.is_admin? %>
+    <%= link_to "All users", users_path , :class => "button", :method => :get %><br />
+    <%= link_to "All buyers", buyers_path, :type => 'button', :method => :get %>
+  <% end %>
+  <% if current_user.is_user? %>
+    <%= link_to "Add products", new_product_path , :class => "button", :method => :get %><br />
+    <%= link_to "All products", products_path, :class => "button", :method => :get %>
+  <% end %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2" style="background-color:aliceblue;"><strong>Categories</strong><br />
+      <% @categories.each do |c| %>
+        <%= link_to c, home_index_path(categories_name: c) %><br />
+      <%end%>
+    </div>
+
+    <div class="col-sm-8" style="background-color:lavender;"><br />
+      <% if current_user.present? %>
+        <% if current_user.is_buyer? %>
+          <%= link_to "Your Cart", cart_item_index_path , :class => "button", :method => :get %><br /><br />
+        <% end %>
+      <% end %>
+      
+      <%= form_tag(search_products_path, method: :get, remote: true) do %>
+        <%= label_tag(:search, "Search name:") %>
+        <%= text_field_tag(:search, nil, :id => "product_name") %>
+        <%= submit_tag("Search") %>
+      <% end %>
+       
+      <h2>Products</h2>
+      <div id="product-modal">
+        <%= render :partial => "product_list" %>
+      </div>
+    </div>
+    <div class="col-sm-2" style="background-color:azure;">Diwali offers
+    </div>
+  </div>
+</div> 
+<%= will_paginate @products %>
+  
+
+>>>>>>> master
 <script type="text/javascript">
   $(document).on("keyup", "#product_name", function() {
     var keyword = $(this).val();
     if (keyword.length > 2 || keyword.length == 0){
       $.ajax({
+<<<<<<< HEAD
         url: "/products/search",  
+=======
+        url: "<%= search_products_path %>",  
+>>>>>>> master
         data: {search: keyword}
       }); 
     }    
   });
+<<<<<<< HEAD
 
 
   $(document).on('click', '.go-contact', function (e) {
@@ -45,4 +99,10 @@
   });
 </script>
 <!-- js for search and scroll index end -->
+=======
+</script>
+
+
+
+>>>>>>> master
 

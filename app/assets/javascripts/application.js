@@ -19,6 +19,7 @@
 //= require custom
 //= require_tree .
 //= require jquery_nested_form
+<<<<<<< HEAD
 //= require nprogress
 //= require nprogress-turbolinks
 //= require social-share-button
@@ -28,3 +29,5 @@ NProgress.configure({
   ease: 'ease',
   speed: 2000
 })
+=======
+>>>>>>> master

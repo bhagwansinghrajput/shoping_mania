@@ -1,4 +1,5 @@
 body{ 
+<<<<<<< HEAD
   margin: 0;
   margin-bottom: 40px;
   background-color:aliceblue;
@@ -2323,5 +2324,57 @@ shortcodes page css
 .search_btn{
   background-color: black;
   border-color: black;
+=======
+    margin: 0;
+    background-color:aliceblue;
+    height: auto;
+    a:link    {color:green; background-color:transparent; text-decoration:none}
+    a:visited {color:black; background-color:transparent; text-decoration:none}
+    a:hover   {color:red; background-color:transparent; text-decoration:underline}
+    a:active  {color:yellow; background-color:transparent; text-decoration:underline}
+    
+  }
+
+h1{
+    color:blue
+    
+  }
+  
+h2{
+    color:royalblue
+    
+  }
+    
+p {
+    color:green
+  }
+
+th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  
+.header {
+    background-color:lightgrey;
+    width:100%;
+    height:13%;
+    margin: 0;
+  }
+  
+.right{
+    float:right;
+    margin-right:20px;
+    height:5%
+    
+  }
+.margin_top{
+    margin-top: 140px;
+  }
+
+.left{
+  margin-left: 10px;
+
+>>>>>>> master
 }
 

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151121122740) do
+=======
+ActiveRecord::Schema.define(version: 20151102090952) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151121122740) do
     t.datetime "updated_at",  null: false
   end
 
+<<<<<<< HEAD
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -55,6 +60,8 @@ ActiveRecord::Schema.define(version: 20151121122740) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+=======
+>>>>>>> master
   create_table "offers", force: :cascade do |t|
     t.integer  "discount"
     t.date     "start_date"
@@ -98,12 +105,21 @@ ActiveRecord::Schema.define(version: 20151121122740) do
   end
 
   create_table "users", force: :cascade do |t|
+<<<<<<< HEAD
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",          default: 0,     null: false
+=======
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+>>>>>>> master
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -117,11 +133,17 @@ ActiveRecord::Schema.define(version: 20151121122740) do
     t.string   "country"
     t.integer  "zipcode"
     t.integer  "role"
+<<<<<<< HEAD
     t.boolean  "permission",             default: false
+=======
+>>>>>>> master
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+<<<<<<< HEAD
   add_foreign_key "identities", "users"
+=======
+>>>>>>> master
 end

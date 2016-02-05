@@ -1,4 +1,5 @@
 class Cart < ActiveRecord::Base
+<<<<<<< HEAD
   attr_accessor :name
   belongs_to :user
   belongs_to :products
@@ -11,4 +12,10 @@ class Cart < ActiveRecord::Base
     end
     return true
   end 
+=======
+  attr_accessor :name, :price, :quantity, :category
+  belongs_to :user
+  belongs_to :products
+  has_many :cart_items
+>>>>>>> master
 end

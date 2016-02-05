@@ -1,5 +1,6 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!
+<<<<<<< HEAD
   before_filter :find_buyer, only: [:destroy]
   before_filter :authenticate_admin, only: [:index, :destroy]
 
@@ -35,4 +36,13 @@ class BuyersController < ApplicationController
     end
   end
 
+=======
+  def index
+    if current_user.is_admin?
+      @buyers = User.where(role: User::ROLE["buyer"])
+    else
+    
+    end
+  end 
+>>>>>>> master
 end
